@@ -1,0 +1,63 @@
+if game.PlaceId == 13488547075 then
+ 
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "BaconBoss Hub | Destruction Simulator", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+     
+_G.egg = true
+_G.up = true
+
+
+function egg()
+     while _G.egg == true do
+
+        game:GetService("ReplicatedStorage"):WaitForChild("newEventPet"):FireServer("EventEgg")
+        wait(0.1)
+    end        
+end
+
+function up()
+      while _G.up == true do
+        local args = {
+            [1] = "BackpackUpgrade",
+            [2] = 998
+        }
+        
+        game:GetService("ReplicatedStorage"):WaitForChild("RemoteEvent"):FireServer(unpack(args))
+        wait(0.1)
+    end        
+end
+
+local MainTab = Window:MakeTab({
+	Name = "Main",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+MainTab:AddToggle({
+	Name = "Auto Open Inf Egg Event",
+	Default = false,
+	Callback = function(Value)
+		_G.egg = Value
+        egg()
+	end    
+})
+
+MainTab:AddToggle({
+	Name = "Auto Upgrade Backpack",
+	Default = false,
+	Callback = function(Value)
+		_G.up = Value
+        up()
+	end    
+})
+
+MainTab:AddLabel("Note: Follow My Steps For Instant Destroy Anything")
+
+MainTab:AddButton({
+	Name = "Inf Yeild",
+	Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()  
+    end
+}) 
+
+end
